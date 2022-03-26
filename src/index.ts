@@ -1,0 +1,1 @@
+export { VoiceText } from './voicetext';
