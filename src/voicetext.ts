@@ -56,29 +56,25 @@ export class VoiceText {
     private _voiceTextParams: VoiceTextParams = {};
 
     constructor(voiceTextParams: VoiceTextParams & { apiKey: string }) {
-        const {
-            apiKey: apiKey,
-            text,
-            speaker,
-            format,
-            pitch,
-            speed,
-            volume,
-        } = voiceTextParams;
+        const { apiKey: apiKey } = voiceTextParams;
         this._apiKey = apiKey;
+        this._initParams(voiceTextParams);
+    }
+
+    private _initParams(voiceTextParams: VoiceTextParams) {
+        const { text, speaker, format, pitch, speed, volume } = voiceTextParams;
         text ? this.setText(text) : this.setText('こんにちは');
         speaker ? this.setSpeaker(speaker) : this.setSpeaker('show');
         format ? this.setFormat(format) : this.setFormat('wav');
         pitch ? this.setPitch(pitch) : this.setPitch(100);
         speed ? this.setSpeed(speed) : this.setSpeed(100);
         volume ? this.setVolume(volume) : this.setVolume(100);
-        if (this._validateParams(voiceTextParams)) {
-            const { emotion, emotion_level: emotionLevel } = voiceTextParams;
-            emotion ? this.setEmotion(emotion) : this.setEmotion('happiness');
-            emotionLevel
-                ? this.setEmotionLevel(emotionLevel)
-                : this.setEmotionLevel(2);
-        }
+        if (!this._validateParams(voiceTextParams)) return;
+        const { emotion, emotion_level: emotionLevel } = voiceTextParams;
+        emotion ? this.setEmotion(emotion) : this.setEmotion('happiness');
+        emotionLevel
+            ? this.setEmotionLevel(emotionLevel)
+            : this.setEmotionLevel(2);
     }
 
     private _validateParams(
@@ -156,7 +152,6 @@ export class VoiceText {
         const query = Object.entries(voiceTextParams)
             .map(([key, value]) => `${key}=${value}`)
             .join('&');
-        console.log(query);
         const postData = {
             method: 'POST',
             headers: {
@@ -175,13 +170,12 @@ export class VoiceText {
                     message: 'OK',
                     buffer: await res.buffer(),
                 };
-            } else {
-                return {
-                    status: <ErrorStatus>res.status,
-                    message: res.statusText,
-                    buffer: undefined,
-                };
             }
+            return {
+                status: <ErrorStatus>res.status,
+                message: res.statusText,
+                buffer: undefined,
+            };
         });
         return response;
     }
