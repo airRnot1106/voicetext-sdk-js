@@ -1,13 +1,18 @@
 import fetch from 'node-fetch';
 import stream from 'stream';
 
-type SpeakerHasEmotion = 'haruka' | 'hikari' | 'takeru' | 'santa' | 'bear';
-type SpeakerWithoutEmotion = 'show';
-type Speaker = SpeakerHasEmotion | SpeakerWithoutEmotion;
+export type SpeakerHasEmotion =
+    | 'haruka'
+    | 'hikari'
+    | 'takeru'
+    | 'santa'
+    | 'bear';
+export type SpeakerWithoutEmotion = 'show';
+export type Speaker = SpeakerHasEmotion | SpeakerWithoutEmotion;
 
-type Format = 'wav' | 'ogg' | 'mp3';
+export type Format = 'wav' | 'ogg' | 'mp3';
 
-interface VoiceTextParamsBase {
+export interface VoiceTextParamsBase {
     text?: string;
     format?: Format;
     pitch?: number;
@@ -15,21 +20,21 @@ interface VoiceTextParamsBase {
     volume?: number;
 }
 
-type Emotion = 'happiness' | 'anger' | 'sadness';
+export type Emotion = 'happiness' | 'anger' | 'sadness';
 
-type EmotionLevel = 1 | 2 | 3 | 4;
+export type EmotionLevel = 1 | 2 | 3 | 4;
 
-interface VoiceTextParamsHasEmotion extends VoiceTextParamsBase {
+export interface VoiceTextParamsHasEmotion extends VoiceTextParamsBase {
     speaker?: SpeakerHasEmotion;
     emotion?: Emotion;
     emotion_level?: EmotionLevel;
 }
 
-interface VoiceTextParamsWithoutEmotion extends VoiceTextParamsBase {
+export interface VoiceTextParamsWithoutEmotion extends VoiceTextParamsBase {
     speaker?: SpeakerWithoutEmotion;
 }
 
-type VoiceTextParams =
+export type VoiceTextParams =
     | VoiceTextParamsHasEmotion
     | VoiceTextParamsWithoutEmotion;
 
