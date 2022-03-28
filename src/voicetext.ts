@@ -63,16 +63,16 @@ export class VoiceText {
 
     private _initParams(voiceTextParams: VoiceTextParams) {
         const { text, speaker, format, pitch, speed, volume } = voiceTextParams;
-        this.setText(text || 'こんにちは');
-        this.setSpeaker(speaker || 'show');
-        this.setFormat(format || 'wav');
-        this.setPitch(pitch || 100);
-        this.setSpeed(speed || 100);
-        this.setVolume(volume || 100);
+        this.setText(text ?? 'こんにちは');
+        this.setSpeaker(speaker ?? 'show');
+        this.setFormat(format ?? 'wav');
+        this.setPitch(pitch ?? 100);
+        this.setSpeed(speed ?? 100);
+        this.setVolume(volume ?? 100);
         if (!this._validateParams(voiceTextParams)) return;
         const { emotion, emotion_level: emotionLevel } = voiceTextParams;
-        this.setEmotion(emotion || 'happiness');
-        this.setEmotionLevel(emotionLevel || 2);
+        this.setEmotion(emotion ?? 'happiness');
+        this.setEmotionLevel(emotionLevel ?? 2);
     }
 
     private _validateParams(
