@@ -63,16 +63,16 @@ export class VoiceText {
 
     private _initParams(voiceTextParams: VoiceTextParams) {
         const { text, speaker, format, pitch, speed, volume } = voiceTextParams;
-        this.setText(text || 'こんにちは');
-        this.setSpeaker(speaker || 'show');
-        this.setFormat(format || 'wav');
-        this.setPitch(pitch || 100);
-        this.setSpeed(speed || 100);
-        this.setVolume(volume || 100);
+        this.setText(text ?? 'こんにちは');
+        this.setSpeaker(speaker ?? 'show');
+        this.setFormat(format ?? 'wav');
+        this.setPitch(pitch ?? 100);
+        this.setSpeed(speed ?? 100);
+        this.setVolume(volume ?? 100);
         if (!this._validateParams(voiceTextParams)) return;
         const { emotion, emotion_level: emotionLevel } = voiceTextParams;
-        this.setEmotion(emotion || 'happiness');
-        this.setEmotionLevel(emotionLevel || 2);
+        this.setEmotion(emotion ?? 'happiness');
+        this.setEmotionLevel(emotionLevel ?? 2);
     }
 
     private _validateParams(
@@ -91,11 +91,26 @@ export class VoiceText {
     }
 
     setSpeaker(speaker: Speaker): this {
+        const speakers: Speaker[] = [
+            'show',
+            'haruka',
+            'hikari',
+            'takeru',
+            'santa',
+            'bear',
+        ];
+        if (!speakers.includes(speaker)) {
+            throw new Error(`Speaker must be one of ${speakers.join(', ')}.`);
+        }
         this._voiceTextParams.speaker = speaker;
         return this;
     }
 
     setFormat(format: Format): this {
+        const formats: Format[] = ['wav', 'ogg', 'mp3'];
+        if (!formats.includes(format)) {
+            throw new Error(`Format must be one of ${formats.join(', ')}.`);
+        }
         this._voiceTextParams.format = format;
         return this;
     }
@@ -103,8 +118,12 @@ export class VoiceText {
     setEmotion(emotion: Emotion): this {
         if (!this._validateParams(this._voiceTextParams)) {
             throw new Error(
-                'Speaker "show" cannot be set to emote. Or the speaker is not set.'
+                'Speaker "show" cannot set emote or the speaker is not set.'
             );
+        }
+        const emotions: Emotion[] = ['happiness', 'anger', 'sadness'];
+        if (!emotions.includes(emotion)) {
+            throw new Error(`Emotion must be one of ${emotions.join(', ')}.`);
         }
         this._voiceTextParams.emotion = emotion;
         return this;
@@ -113,8 +132,12 @@ export class VoiceText {
     setEmotionLevel(level: 1 | 2 | 3 | 4): this {
         if (!this._validateParams(this._voiceTextParams)) {
             throw new Error(
-                'Speaker "show" cannot be set to emote. Or the speaker is not set.'
+                'Speaker "show" cannot set emote or the speaker is not set.'
             );
+        }
+        const levels: EmotionLevel[] = [1, 2, 3, 4];
+        if (!levels.includes(level)) {
+            throw new Error(`Emotion level must be between 1 and 4.`);
         }
         this._voiceTextParams.emotion_level = level;
         return this;
