@@ -1,6 +1,6 @@
 # voicetext-sdk-nodejs
 
-[![Build Status](https://app.travis-ci.com/airRnot1106/voicetext-sdk-nodejs.svg?branch=main)](https://app.travis-ci.com/airRnot1106/voicetext-sdk-nodejs) ![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/airRnot1106/voicetext-sdk-nodejs) ![Code Climate coverage](https://img.shields.io/codeclimate/coverage/airRnot1106/voicetext-sdk-nodejs) [![npm](https://img.shields.io/badge/-Npm-CB3837.svg?logo=npm&style=popout)](https://www.npmjs.com/package/voicetext-sdk)
+[![Build Status](https://app.travis-ci.com/airRnot1106/voicetext-sdk-nodejs.svg?branch=main)](https://app.travis-ci.com/airRnot1106/voicetext-sdk-nodejs) ![npm (tag)](https://img.shields.io/npm/v/voicetext-sdk/latest) ![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/airRnot1106/voicetext-sdk-nodejs) ![Code Climate coverage](https://img.shields.io/codeclimate/coverage/airRnot1106/voicetext-sdk-nodejs) [![npm](https://img.shields.io/badge/-Npm-CB3837.svg?logo=npm&style=popout)](https://www.npmjs.com/package/voicetext-sdk)
 
 ## Install
 
