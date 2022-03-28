@@ -54,6 +54,10 @@ const voiceText = new VoiceText({
 })();
 ```
 
+## API
+
+See [document](https://airrnot1106.github.io/voicetext-sdk-nodejs/) and [official website](https://cloud.voicetext.jp/webapi/docs/api).
+
 ## Issues
 
 If you find a bug or problem, please open an issue!:bug:
